@@ -1,0 +1,17 @@
+{
+  "name": "Coordinates",
+  "2D": false,
+  "3D": true,
+  "platform": "HTML3D",
+  "version": "2.11",
+  "wabVersion": "2.10",
+  "author": "Arup",
+  "description": "",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+    "inPanel": false,
+    "hasConfig": false,
+    "supportMultiInstance": false
+  }
+}
