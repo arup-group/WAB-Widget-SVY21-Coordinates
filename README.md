@@ -8,8 +8,8 @@ The SVY21 Coordinates widget is a custom widget developed for Web AppBuilder for
 
 ## Demo
 
-* Widget demo in 2D app [(link)](https://arupaus.github.io/WAB-Widget-Coordinates/Demo/2D)
-* Widget demo in 3D app [(link)](https://arupaus.github.io/WAB-Widget-Coordinates/Demo/2D)
+* Widget demo in 2D app [(link)](https://arupaus.github.io/WAB-Widget-Coordinates/demo/2d)
+* Widget demo in 3D app [(link)](https://arupaus.github.io/WAB-Widget-Coordinates/demo/3d)
 
 ## Adding to your application
 
