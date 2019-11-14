@@ -4,7 +4,7 @@ The SVY21 Coordinates widget is a custom widget developed for Web AppBuilder for
 
 2D version using the ArcGIS JavaScript API v3.x. and 3D version using ArcGIS JavaScript API v4.x. 
 
-![screenshot](https://github.com/ArupAus/WAB-Widget-Coordinates/screenshot.png) 
+![screenshot](https://raw.githubusercontent.com/ArupAus/WAB-Widget-Coordinates/master/screenshot.png) 
 
 ## Demo
 
