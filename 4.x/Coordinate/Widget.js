@@ -3,16 +3,12 @@ define([
   'dojo/dom',
   'dijit/_WidgetsInTemplateMixin',
   'jimu/BaseWidget',
-  'dojo/_base/lang',
-  'dojo/on',
 ],
 
   function (
     declare, dom,
     _WidgetsInTemplateMixin,
-    BaseWidget,
-    lang,
-    on
+    BaseWidget
   ) {
 
     var clazz = declare([BaseWidget, _WidgetsInTemplateMixin], {
@@ -21,17 +17,25 @@ define([
 
       postCreate: function () {
         this.inherited(arguments);
-        this.own(on(this.map, "mouse-move", lang.hitch(this, this.onMouseMove)));
         console.log('postCreate');
       },
 
       startup: function () {
         this.inherited(arguments);
         console.log('startup');
+        // init
+        this._setCoords();
       },
 
-      onMouseMove: function(evt) {
-          point = evt.mapPoint;
+      _setCoords: function () {
+
+        attribution = `OneMap |`; 
+
+        this.sceneView.on('pointer-move', event => {
+
+          // create point on scene at pointer
+          point = this.sceneView.toMap(event);
+
           // no point will be generated when navigating underground
           if (point !== null) {
 
@@ -55,17 +59,25 @@ define([
                   // console.log(`sceneView coords - x: ${point.x} y: ${point.y}`);
                   // console.log(`OneMap coords - x: ${xValue2dp} y: ${yValue2dp}`);
 
-                  //check if the coords is within Singapore extent
-                  if (xValue2dp>919.05&&xValue2dp<54338.72&& yValue2dp>12576.34 && yValue2dp<50172.05){
-                  // display coords
-                    coordsSVY21 = `EPSG 3414 (SVY21): ${xValue2dp}, ${yValue2dp}`;
+                  // check if the coords is within Singapore extent
+                  if (xValue2dp > 919.05 && xValue2dp < 54338.72 && yValue2dp > 12576.34 && yValue2dp < 50172.05){
+                  
+                    // display coords
+                    coordsSVY21 = `${attribution} EPSG 3414 (SVY21): ${xValue2dp}, ${yValue2dp}`;
                     dom.byId("coordsValueSVY21").value = coordsSVY21;
                   }
                   else{
-                    dom.byId("coordsValueSVY21").value = `${point.getLongitude().toFixed(2)}, ${point.getLatitude().toFixed(2)}`;
+                    // dom.byId("coordsValueSVY21").value = `${point.longitude.toFixed(5)}, ${point.latitude.toFixed(5)}`; // EPSG3857 lat lng
+                    dom.byId("coordsValueSVY21").value = `${attribution} EPSG 3414 (SVY21): Out of Range`; 
                   }
                 });
             }
+        });
+
+        this.sceneView.on('pointer-leave', function () {
+          dom.byId("coordsValueSVY21").value = `${attribution} EPSG 3414 (SVY21)`;
+        });
+
       },
 
     });
