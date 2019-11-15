@@ -40,38 +40,40 @@ define([
 
         // no point will be generated when navigating underground (is this necessary?)
         if (point !== null) {
-
+                        
+          // check if the coords is within Singapore extent
+          if (point.latitude > 1.13 && point.latitude < 1.47 && point.longitude > 103.59 && point.longitude < 104.07){
           // convert point map coords from 3857 to 3414 (SVY21) using OneMap API
-          requestUrl = `https://developers.onemap.sg/commonapi/convert/3857to3414?Y=${point.y}&X=${point.x}`;
+            requestUrl = `https://developers.onemap.sg/commonapi/convert/3857to3414?Y=${point.y}&X=${point.x}`;
 
-          fetch(requestUrl)
+            fetch(requestUrl)
 
-            .then(function (response) {
-              return response.json();
-            })
+              .then(function (response) {
+                return response.json();
+              })
 
-            .then(function (myJson) {
+              .then(function (myJson) {
 
-              // convert coordinates to 2 dp
-              xValue = myJson.X;
-              yValue = myJson.Y;
-              xValue2dp = xValue.toFixed(2);
-              yValue2dp = yValue.toFixed(2);
+                // convert coordinates to 2 dp
+                xValue = myJson.X;
+                yValue = myJson.Y;
+                xValue2dp = xValue.toFixed(2);
+                yValue2dp = yValue.toFixed(2);
 
-              // console.log(`sceneView coords - x: ${point.x} y: ${point.y}`);
-              // console.log(`OneMap coords - x: ${xValue2dp} y: ${yValue2dp}`);
+                // console.log(`sceneView coords - x: ${point.x} y: ${point.y}`);
+                // console.log(`OneMap coords - x: ${xValue2dp} y: ${yValue2dp}`);
 
-              // check if the coords is within Singapore extent
-              if (xValue2dp > 919.05 && xValue2dp < 54338.72 && yValue2dp > 12576.34 && yValue2dp < 50172.05) {
                 // display coords
                 coordsSVY21 = `${attribution} EPSG 3414 (SVY21): ${xValue2dp}, ${yValue2dp}`;
                 dom.byId("coordsValueSVY21").value = coordsSVY21;
-              }
-              else {
-                // dom.byId("coordsValueSVY21").value = `${point.longitude.toFixed(5)}, ${point.latitude.toFixed(5)}`; // EPSG3857 lat lng
-                dom.byId("coordsValueSVY21").value = `${attribution} EPSG 3414 (SVY21): Out of Range`; 
-              }
-            });
+                
+                
+              });
+          }
+          else {
+            // dom.byId("coordsValueSVY21").value = `${point.longitude.toFixed(5)}, ${point.latitude.toFixed(5)}`; // EPSG3857 lat lng
+            dom.byId("coordsValueSVY21").value = `${attribution} EPSG 3414 (SVY21): Out of Range`; 
+          }
         }
       },
 
