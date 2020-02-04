@@ -27,7 +27,7 @@
     "digitalau.arup.com"
   ],
   "title": "Demo 3D Web GIS App",
-  "subtitle": "with Web AppBuilder for ArcGIS (ArcGIS JavaScript API 3.x)",
+  "subtitle": "with Web AppBuilder for ArcGIS (ArcGIS JavaScript API 4.x)",
   "keepAppState": false,
   "logo": "images/app-logo.png",
   "httpProxy": {
